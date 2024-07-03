@@ -61,8 +61,23 @@ const App = () => {
 
   gameStart()
   }, [])
-  
 
+  const gameStart = () => {
+  }
+
+  //Handler for guess, pass, reset
+  const submitHandler = (e) => {
+
+  }
+  
+  const passHandler =() => {
+
+  }
+
+  const resetHandler =() => {
+
+  }
+  
 
   return (
     <div className = "game-container">
