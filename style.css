@@ -5,9 +5,82 @@ body {
     color: rgb(45, 45, 55);
 }
 
+#root {
+    text-align: center;
+}
+
+h1 {
+    color: rgb(230, 9, 86);
+}
 .game-container {
     max-width: 600px;
-    margin: 20px;
+    margin: 0 auto;
     padding: 20px;
     background-color: rgb(243, 197, 48);
 }
+
+.scoreboard {
+    display: flex;
+    justify-content: space-between;
+}
+
+.scoreboard-container {
+    width: 400px;
+    display: inline-block;
+}
+
+.quiz-word {
+    width: 400px;
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight:600;
+    padding: 25px 0;
+    background-color: white;
+    color: rgb(0, 96, 170);
+}
+
+.quiz-word p {
+    margin: 0;
+}
+
+.response-message {
+    width: 400px;
+    display: inline-block;
+}
+
+.response-message div {
+    color: rgb(0, 152, 15);
+    font-weight: bold;
+}
+
+form {
+    margin: 20px 0;
+}
+
+form input {
+    padding: 5px;
+    border-color: rgb(230, 9, 86);
+    border-radius: 5px;
+    color: rgb(230, 9, 86);
+}
+
+form button {
+    margin: 0 15px;
+    padding: 5px 10px;
+    border: 2px solid rgb(230, 9, 86);
+    border-radius: 5px;
+    color: rgb(230, 9, 86);
+}
+
+.remaining-passes {
+    margin-bottom: 30px;
+}
+
+.remaining-passes button {
+    background-color: rgb(230, 9, 86);
+    border: 0;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: white;
+}
+

@@ -37,6 +37,27 @@ const App = () => {
   return (
     <div className = "game-container">
       <h1>Welcome to Scramble Game</h1>
+      <div className = "scoreboard-container">
+        <div className = "scoreboard">
+          <p>Score: </p>
+          <p>Strikes: </p>
+        </div>
+      </div>
+      <div className = "quiz-word">
+        <div><p>Quiz Word</p></div>
+      </div>
+      <div className = "response-message">
+        <div>
+          <p>Response Message</p>
+        </div>
+      </div>
+      <form>
+          <input type="text" name="guess" placeholder="Type your guess word." />
+          <button type="submit">Submit</button>
+      </form>
+      <div className = "remaining-passes">
+        <button>Remaining Passes: </button>
+      </div>
     </div>
   )
 }
