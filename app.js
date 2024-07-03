@@ -105,25 +105,37 @@ const checkGameEnd = () => {
   //Handler for guess, pass, reset
   const submitHandler = (e) => {
     e.preventDefault()
-    const guess = e.target.elements.guess.value.toLowerCase().trim()
+    const guess = e.target.elements.guess.value.trim().toLowerCase()
+    e.target.elements.guess.value = ''
 
-    if (guess === answerWord.toLowerCase) {
+    if (guess === answerWord.toLowerCase()) {
       //correct answer
-      setScore(score + 1)
-      setReponseMessage('Good job! Next Quiz')
+      setScore((prevScore) => {
+        const newScore = prevScore + 1
+        localStorage.setItem('score', newScore)
+        return newScore
+      })
+      setResponseMessage('Good job! Next Quiz')
+      gameStart()
     }else{
       //incorrect answer
-      setStrikes(strikes + 1)
+      setStrikes((prevStrices) => {
+        const newStrikes = prevStrikes + 1
+        localStorage.setItem('strikes', newStrikes)
+        return newStrikes
+      })
       setReponseMessage('Please try again')
     }
-
-    e.target.reset()
   }
   
   const passHandler =() => {
     if (passes > 0) {
-      setPasses(passes - 1)
       gameStart()
+      setPasses((prevPasses) => {
+        const newPasses = prevPasses - 1
+        localStorage.setItem('passes', newPasses)
+        return newPasses
+      })
     }
   }
 
@@ -137,6 +149,10 @@ const checkGameEnd = () => {
     setReponseMessage('')
     setGameOver(false)
   }
+
+  React.useEffect(() => {
+    gameStart()
+  }, [])
 
 
   return (
