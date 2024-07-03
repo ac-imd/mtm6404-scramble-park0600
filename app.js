@@ -39,31 +39,43 @@ const words = [
   'horse', 'elephant', 'tiger', 'giraffe', 'monkey', 'rabbit', 'dolphin', 'whale', 'kangaroo', 'penguin', 'zebra', 'squirrel'
 ]
 
-// 2. The game should be persistent. The player's progress should be tracked throughout the game and stored in local storage.
+// Create a copy of the words array to track remaining words
+let wordsCopy = words.slice();
 
-let score = 0
-
-// Check the localStorage if there is already a score
-const savedScore = localStorage.getItem('score');
-if (savedScore) {
-  score = parseInt(savedScore, 10)
-}
-
-// Update the score in local storage
-function updateScore(newScore) {
-  score = newScore;
-  localStorage.setItem('score', score.toString())
-}
-
-// Create a React root
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
+
 function App() {
-  const [score, setScore] = React.useState(0)
-  const [strikes, setStrikes] = React.useState(0)
-  const [quizWord, setQuizWord] = React.useState('')
-  const [passes, setPasses] = React.useState(3)
-  const [responseMessage, setResponseMessage] = React.useState('')
+  //score state to track and initialize from local storage
+  const [score, setScore] = React.useState(() => {
+    const savedScore = localStorage.getItem('score');
+    return savedScore ? parseInt(savedScore, 10) : 0;
+  });
+
+  //strikes state and initialize from local storage
+  const [strikes, setStrikes] = React.useState(() => {
+    const savedStrikes = localStorage.getItem('strikes');
+    return savedStrikes ? parseInt(savedStrikes, 10) : 0;
+  });
+
+  //passes state and initialize from local storage
+  const [passes, setPasses] = React.useState(() => {
+    const savedPasses = localStorage.getItem('passes');
+    return savedPasses ? parseInt(savedPasses, 10) : 3;
+  });
+
+  //Current state of scrambled word
+  const [quizWord, setQuizWord] = React.useState('');
+
+  //Input answer word state
+  const [answerWord, setAnswerWord] = React.useState('');
+
+  //Response message state
+  const [responseMessage, setResponseMessage] = React.useState('');
+
+  //Game over state
+  const [gameOver, setGameOver] = React.useState(false);
+
 
   //Function for shuffled word
   const shuffleWord = (word) => {
@@ -77,12 +89,15 @@ function App() {
 
   //Game starts with random words' character
   const gameStart = () => {
-    const randomIndex = Math.floor(Math.random() * words.length)
-    const selectedWord = words[randomIndex]
-    const scrambledWord = shuffleWord(selectedWord)
-    setQuizWord(scrambledWord)
-    setResponseMessage('')
+  if (wordsCopy.length > 0) {
+    const randomIndex = Math.floor(Math.random() * wordsCopy.length);
+    const newWord = wordsCopy.splice(randomIndex, 1)[0]; // Remove the word from the array
+    setQuizWord(shuffle(newWord));
+    setAnswerWord(newWord);
+  } else {
+    checkGameEnd();
   }
+}
 
   //Call initial state when game starts
   React.useEffect(() => {
@@ -95,7 +110,9 @@ function App() {
     e.target.elements.guess.value = ''
 
     //Check the answer with input data
-    const answerWord = words.find((word) => guess === word.toLowerCase())
+    const answerWord = words.find((word) => {
+      return guess === word.toLowerCase()
+    })
   
     if (guess === answerWord) {
       // Correct guess
@@ -108,7 +125,11 @@ function App() {
       gameStart(); // Get a new scrambled word
     } else {
       // Incorrect guess
-      setStrikes((prevStrikes) => prevStrikes + 1)
+      setStrikes((prevStrikes) => {
+        const newStrikes = prevStrikes + 1;
+        updateStrikes(newStrikes);
+        return newStrikes;
+      })
       setResponseMessage('Please try again')
     }
   }
@@ -117,7 +138,11 @@ function App() {
   const handlePass = () => {
     if (passes > 0) {
       gameStart()
-      setPasses((prevPasses) => prevPasses - 1)
+      setPasses((prevPasses) => {
+        const newPasses = prevPasses - 1;
+        updatePasses(newPasses);
+        return newPasses;
+      })
     }
   }
 
