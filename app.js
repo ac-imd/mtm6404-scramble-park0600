@@ -11,7 +11,7 @@
  * @Parameters: Array or string
  * @Return: Scrambled Array or string, based on the provided parameter
  */
-function shuffle (src) {
+function shuffle(src) {
   const copy = [...src]
 
   const length = copy.length
@@ -44,16 +44,14 @@ const words = [
 let score = 0
 
 // Check the localStorage if there is already a score
-const savedScore = localStorage.getItem('score')
+const savedScore = localStorage.getItem('score');
 if (savedScore) {
   score = parseInt(savedScore, 10)
-} else {
-  localStorage.setItem('score', score.toString())
 }
 
 // Update the score in local storage
 function updateScore(newScore) {
-  score = newScore
+  score = newScore;
   localStorage.setItem('score', score.toString())
 }
 
@@ -67,8 +65,8 @@ function App() {
   const [passes, setPasses] = React.useState(3)
 
   //Function for shuffled word
-  const shuffle = (word) => {
-    const arr = word.split('')
+  const shuffleWord = (word) => {
+    const arr = word.split('');
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]]
@@ -80,19 +78,37 @@ function App() {
   const gameStart = () => {
     const randomIndex = Math.floor(Math.random() * words.length)
     const selectedWord = words[randomIndex]
-    const scrambledWord = shuffle(selectedWord)
+    const scrambledWord = shuffleWord(selectedWord)
     setQuizWord(scrambledWord)
   }
 
   //Call initial state when game starts
   React.useEffect(() => {
-    gameStart()
+    gameStart();
   }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const guess = e.target.elements.guess.value.trim().toLowerCase()
     e.target.elements.guess.value = ''
+
+    //Check the answer with input data
+    const answerWord = words.find((word) => {
+      return guess === word.toLowerCase()
+    })
+  
+    if (guess === answerWord) {
+      // Correct guess
+      setScore((prevScore) => {
+        const newScore = prevScore + 1
+        updateScore(newScore)
+        return newScore
+      });
+      gameStart(); // Get a new scrambled word
+    } else {
+      // Incorrect guess
+      setStrikes((prevStrikes) => prevStrikes + 1)
+    }
   }
 
   //root layout
@@ -111,10 +127,10 @@ function App() {
         <button type="submit">Submit</button>
       </form>
       <div className="passes">
-        <p>Passes remaining: {passes}</p>
+        <p>Passes remaining: <span style={{ color: 'red' }}>{passes}</span></p>
       </div>
     </div>
-  );
+  )
 }
 
-root.render(<App />);
+root.render(<App />)
