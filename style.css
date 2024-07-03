@@ -1,68 +1,13 @@
-/* body {
+body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-}
-
-h1 {
-    text-align: center;
+    background-color: rgb(45, 45, 55);
+    color: rgb(45, 45, 55);
 }
 
 .game-container {
     max-width: 600px;
-    margin: 20px auto;
+    margin: 20px;
     padding: 20px;
-    background-color: rgb(178, 203, 219);
+    background-color: rgb(243, 197, 48);
 }
-
-.scoreboard {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.quiz-word {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-form {
-    display: flex;
-    margin-bottom: 10px;
-}
-
-form button {
-    padding: 5px 10px;
-    background-color: rgb(19, 88, 125);
-    color: white;
-    border: 0;
-    border-radius: 5px;
-    margin: 0 20px;
-    cursor: pointer;
-}
-
-form input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    border-radius: 5px;
-    border: 2px solid rgb(19, 88, 125);
-}
-
-form button:hover {
-    background-color: rgb(255, 197, 81);
-    color: rgb(19, 88, 125)
-}
-
-.passes {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.passes button {
-    background-color: rgb(178, 13, 51);
-    padding: 5px 20px;
-    color: white;
-    border: 1px solid rgb(178, 13, 51);
-} */
