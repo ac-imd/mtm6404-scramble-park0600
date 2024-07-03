@@ -195,12 +195,15 @@ const App = () => {
           Submit
         </button>
       </form>
-      <div className="remaining-passes">
-        <button onClick={passHandler} disabled={passes === 0 || strikes >= 5 || score >= 10}>
-          Passes remaining: <span style={{ color: 'yellow' }}>{passes}</span>
-        </button>
-      </div>
-      <button onClick={resetHandler}>Play Again</button>
+        <div className="pass-container">
+          <div className="remaining-passes">
+            <p>Passes remaining: <span style={{ color: '#e60956' }}>{passes}</span></p>
+            <button onClick={passHandler} disabled={passes === 0 || strikes >= 5 || score >= 10}>Pass</button>
+          </div>
+        </div>
+        <div>
+          <button className="resetBtn" onClick={resetHandler}>Play Again</button>
+        </div>
     </div>
   );
 };

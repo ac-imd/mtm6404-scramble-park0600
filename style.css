@@ -1,8 +1,8 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    background-color: rgb(45, 45, 55);
-    color: rgb(45, 45, 55);
+    background-color: #2d2d37;
+    color: #cfcfdc;
 }
 
 #root {
@@ -10,13 +10,13 @@ body {
 }
 
 h1 {
-    color: rgb(230, 9, 86);
+    color: #ffdd00;
 }
 .game-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: rgb(243, 197, 48);
+    background-color: #3b4462;
 }
 
 .scoreboard {
@@ -35,8 +35,9 @@ h1 {
     font-size: 1.5rem;
     font-weight:600;
     padding: 25px 0;
-    background-color: white;
-    color: rgb(0, 96, 170);
+    background-color: #ffdd00;
+    color: #0060aa;
+    border-radius: 5px;
 }
 
 .quiz-word p {
@@ -49,7 +50,7 @@ h1 {
 }
 
 .response-message div {
-    color: rgb(0, 152, 15);
+    color: #00980f;
     font-weight: bold;
 }
 
@@ -59,28 +60,37 @@ form {
 
 form input {
     padding: 5px;
-    border-color: rgb(230, 9, 86);
     border-radius: 5px;
-    color: rgb(230, 9, 86);
+    border: 0;
 }
 
 form button {
     margin: 0 15px;
     padding: 5px 10px;
-    border: 2px solid rgb(230, 9, 86);
+    border: 0;
+    background-color: #ffdd00;
+    color: #3b4462;
     border-radius: 5px;
-    color: rgb(230, 9, 86);
 }
 
-.remaining-passes {
+.pass-container {
+    width: 300px;
+    display: inline-block;
     margin-bottom: 30px;
 }
 
 .remaining-passes button {
-    background-color: rgb(230, 9, 86);
+    background-color: #ffdd00;
     border: 0;
     border-radius: 5px;
-    padding: 10px 20px;
-    color: white;
+    padding: 5px 20px;
+    color: #3b4462;
 }
 
+.resetBtn {
+    background-color: #e60956;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    padding: 7px 13px;
+}
