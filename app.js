@@ -33,36 +33,3 @@ function shuffle (src) {
 /**********************************************
  * YOUR CODE BELOW
  **********************************************/
-// Array of the words
-const words = [
-  'elephant', 'giragge', 'monkey', 'rabbit', 'squirrel', 'dolphin', 'whale', 'penguin', 'kangaroo', 'marmot', 'parrot', 'tiger'
-]
-
-
-
-// React function
-function App() {
-  //Handle function for scrabling and updating stsate
-  function handleScramble(){
-    const wordInput = document.getElementById('wordInput').value
-    const newScrambledWord = shuffle(wordInput)
-    setScrambledWord(newScrambledWord)
-
-    //Save data to localStorage
-    localStorage.setItem('scrambledWord', newScrambledWord)
-  }
-
-  return (
-    React.createElement('div', null,
-      React.createElement('h1', null, 'Scramble Game'),
-      React.createElement('input', {id: 'wordInput', type: 'text', placeholder: 'Enter a word'}),
-      React.createElement('button', {onClick: handleScramble}, 'Scramble'),
-      React.createElement('div', null,
-        React.createElement('h2', null, 'Scrambled Word'),
-        React.createElement('p', {id: 'scrambledWord'})
-      )
-    )
-  )
-}
-
-// Scramble button click handler
