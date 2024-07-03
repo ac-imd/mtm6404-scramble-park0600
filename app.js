@@ -36,6 +36,34 @@ function shuffle (src) {
 const App = () => {
   const words = ['turtle', 'dolphin', 'whale', 'penguin', 'panda', 'cat', 'dog', 'elephant', 'rabbit', 'squirrel']
 
+  const [score, setScore] = React.useState(0)
+  const [strikes, setStrikes] = React.useState(0)
+  const [passes, setPasses] = React.useState(3)
+  const [quizWord, setQuizWord] = React.useState('')
+  const [answerWord, setAnswerWord] = React.useState('0')
+  const [gameOver, setGameOver] = React.useState(false)
+
+  //Load game from local storage
+  React.useEffect(() => {
+    const storedScore = localStorage.getItem('scrambleScore')
+    const storedStrikes = localStorage.getItem('scrambleStrikes')
+    const storedPasses = localStorage.getItem('scramblePasses')
+
+  if (storedScore) {
+    setScore(parseInt(storedScore))
+  }
+  if (storedStrikes) {
+    setStrikes(parseInt(storedStrikes))
+  }
+  if (storedPasses) {
+    setPasses(parseInt(storedPasses))
+  }
+
+  gameStart()
+  }, [])
+  
+
+
   return (
     <div className = "game-container">
       <h1>Welcome to Scramble Game</h1>
