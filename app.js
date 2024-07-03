@@ -40,52 +40,74 @@ let wordsCopy = words.slice()
 
 const App = () => {
 
+  //Track the score
   const [score, setScore] = React.useState(() => {
     const savedScore = localStorage.getItem('score')
     return savedScore ? parseInt(savedScore, 10) : 0
   })
 
+  //Track the strikes
   const [strikes, setStrikes] = React.useState(() => {
     const savedStrikes = localStorage.getItem('strikes')
     return savedStrikes ? parseInt(savedStrikes, 10) : 0
   })
-
+  
+  //Track the passes
   const [passes, setPasses] = React.useState(() => {
     const savedPasses = localStorage.getItem('passes')
     return savedPasses ? parseInt(savedPasses, 10) : 3
   })
 
+
   const [quizWord, setQuizWord] = React.useState('')
-  const [answerWord, setAnswerWord] = React.useState('0')
+  const [answerWord, setAnswerWord] = React.useState('')
+  const [responseMessage, setResponseMessage] = React.useState('')
   const [gameOver, setGameOver] = React.useState(false)
 
   //Load game from local storage
-  React.useEffect(() => {
-    const storedScore = localStorage.getItem('scrambleScore')
-    const storedStrikes = localStorage.getItem('scrambleStrikes')
-    const storedPasses = localStorage.getItem('scramblePasses')
-
-  if (storedScore) {
-    setScore(parseInt(storedScore))
+const gameStart = () => {
+  if (wordsCopy.length > 0) {
+    const randomIndex = Math.floor(Math.random() * wordsCopy.length)
+    const newWord = wordsCopy.splice(randomIndex, 1)[0]
+    setQuizWord(shuffle(newWord))
+  }else{
+    checkGameEnd()
   }
-  if (storedStrikes) {
-    setStrikes(parseInt(storedStrikes))
-  }
-  if (storedPasses) {
-    setPasses(parseInt(storedPasses))
-  }
+}
 
-  gameStart()
-  }, [])
+const checkGameEnd = () => {
+  if (wordsCopy.length === 0 || strikes >= 3) {
+    setResponseMessage('Game Over!')
+    setGameOver(true)
+  }
+}
 
-  const gameStart = () => {}
+  // React.useEffect(() => {
+  //   const storedScore = localStorage.getItem('scrambleScore')
+  //   const storedStrikes = localStorage.getItem('scrambleStrikes')
+  //   const storedPasses = localStorage.getItem('scramblePasses')
+
+  // if (storedScore) {
+  //   setScore(parseInt(storedScore))
+  // }
+  // if (storedStrikes) {
+  //   setStrikes(parseInt(storedStrikes))
+  // }
+  // if (storedPasses) {
+  //   setPasses(parseInt(storedPasses))
+  // }
+
+  // gameStart()
+  // }, [])
+
+  // const gameStart = () => {}
 
   //Handler for guess, pass, reset
   const submitHandler = (e) => {
     e.preventDefault()
     const guess = e.target.elements.guess.value.toLowerCase().trim()
 
-    if (guess === answerWord) {
+    if (guess === answerWord.toLowerCase) {
       //correct answer
       setScore(score + 1)
       setReponseMessage('Good job! Next Quiz')
