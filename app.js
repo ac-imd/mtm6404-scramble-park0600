@@ -62,12 +62,20 @@ const App = () => {
   gameStart()
   }, [])
 
-  const gameStart = () => {
-  }
+  const gameStart = () => {}
 
   //Handler for guess, pass, reset
   const submitHandler = (e) => {
+    e.preventDefault()
+    const guess = e.target.elements.guess.value.toLowerCase().trim()
 
+    if (guess === answerWord) {
+      //correct answer
+    }else{
+      //incorrect answer
+    }
+
+    e.target.reset()
   }
   
   const passHandler =() => {
@@ -77,7 +85,7 @@ const App = () => {
   const resetHandler =() => {
 
   }
-  
+
 
   return (
     <div className = "game-container">
