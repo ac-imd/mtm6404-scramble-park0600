@@ -38,3 +38,17 @@ function shuffle (src) {
 const words = [
   'horse', 'elephant', 'tiger', 'giraffe', 'monkey', 'rabbit', 'dolphin', 'whale', 'kangaroo', 'penguin', 'zebra', 'squirrel'
 ]
+
+// 2. The game should be persistent. The player's progress should be tracked throughout the game and stored in local storage.
+
+let score = 0
+
+// Check the localStorage if there is already a score
+const savedScore = localStorage.getItem('score')
+if (savedScore) {
+  score = parseInt(savedScore, 10)
+} else {
+  localStorage.setItem('score', score.toString());
+}
+
+console.log('Initial score:', score);
