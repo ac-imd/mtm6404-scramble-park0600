@@ -63,10 +63,11 @@ function App() {
   const [strikes, setStrikes] = React.useState(0)
   const [quizWord, setQuizWord] = React.useState('')
   const [passes, setPasses] = React.useState(3)
+  const [responseMessage, setResponseMessage] = React.useState('')
 
   //Function for shuffled word
   const shuffleWord = (word) => {
-    const arr = word.split('');
+    const arr = word.split('')
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]]
@@ -80,6 +81,7 @@ function App() {
     const selectedWord = words[randomIndex]
     const scrambledWord = shuffleWord(selectedWord)
     setQuizWord(scrambledWord)
+    setResponseMessage('')
   }
 
   //Call initial state when game starts
@@ -93,9 +95,7 @@ function App() {
     e.target.elements.guess.value = ''
 
     //Check the answer with input data
-    const answerWord = words.find((word) => {
-      return guess === word.toLowerCase()
-    })
+    const answerWord = words.find((word) => guess === word.toLowerCase())
   
     if (guess === answerWord) {
       // Correct guess
@@ -103,11 +103,21 @@ function App() {
         const newScore = prevScore + 1
         updateScore(newScore)
         return newScore
-      });
+      })
+      setResponseMessage('Good job! Next Word')
       gameStart(); // Get a new scrambled word
     } else {
       // Incorrect guess
       setStrikes((prevStrikes) => prevStrikes + 1)
+      setResponseMessage('Please try again')
+    }
+  }
+
+  //Passes function
+  const handlePass = () => {
+    if (passes > 0) {
+      gameStart()
+      setPasses((prevPasses) => prevPasses - 1)
     }
   }
 
@@ -119,6 +129,9 @@ function App() {
         <p className="points">Points: {score}</p>
         <p className="strikes">Strikes: {strikes}</p>
       </div>
+      <div className="response">
+        <p>{responseMessage}</p>
+      </div>
       <div className="quiz-word">
         <p className="quiz-word">{quizWord}</p>
       </div>
@@ -127,7 +140,7 @@ function App() {
         <button type="submit">Submit</button>
       </form>
       <div className="passes">
-        <button>Passes remaining: <span style={{ color: 'yellow' }}>{passes}</span></button>
+        <button onClick={handlePass} disabled={passes === 0}>Passes remaining: <span style={{ color: 'yellow' }}>{passes}</span></button>
       </div>
     </div>
   )
