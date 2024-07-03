@@ -33,6 +33,12 @@ function shuffle (src) {
 /**********************************************
  * YOUR CODE BELOW
  **********************************************/
+// Array of the words
+const words = [
+  'elephant', 'giragge', 'monkey', 'rabbit', 'squirrel', 'dolphin', 'whale', 'penguin', 'kangaroo', 'marmot', 'parrot', 'tiger'
+]
+
+// React function
 function App() {
   return (
     React.createElement('div', null,
@@ -46,3 +52,5 @@ function App() {
     )
   )
 }
+
+// Scramble button click handler
