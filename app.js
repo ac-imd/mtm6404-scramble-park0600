@@ -33,3 +33,16 @@ function shuffle (src) {
 /**********************************************
  * YOUR CODE BELOW
  **********************************************/
+function App() {
+  return (
+    React.createElement('div', null,
+      React.createElement('h1', null, 'Scramble Game'),
+      React.createElement('input', {id: 'wordInput', type: 'text', placeholder: 'Enter a word'}),
+      React.createElement('button', {onClick: handleScramble}, 'Scramble'),
+      React.createElement('div', null,
+        React.createElement('h2', null, 'Scrambled Word'),
+        React.createElement('p', {id: 'scrambledWord'})
+      )
+    )
+  )
+}
