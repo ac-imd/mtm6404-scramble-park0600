@@ -33,3 +33,8 @@ function shuffle (src) {
 /**********************************************
  * YOUR CODE BELOW
  **********************************************/
+// 1. An array of words must be created. The words should not include spaces or special characters. There must be at least 10 words in the array.
+
+const words = [
+  'horse', 'elephant', 'tiger', 'giraffe', 'monkey', 'rabbit', 'dolphin', 'whale', 'kangaroo', 'penguin', 'zebra', 'squirrel'
+]
