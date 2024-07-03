@@ -51,4 +51,8 @@ if (savedScore) {
   localStorage.setItem('score', score.toString());
 }
 
-console.log('Initial score:', score);
+// Save the score in local storage
+function saveScore(newScore) {
+  score = newScore;
+  localStorage.setItem('score', score.toString())
+}
