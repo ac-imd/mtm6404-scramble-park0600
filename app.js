@@ -64,6 +64,13 @@ function App() {
   const [score, setScore] = React.useState(0)
   const [strikes, setStrikes] = React.useState(0)
   const [quizWord, setQuizWord] = React.useState('')
+  const [passes, setPasses] = React.useState(3)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const submit = e.target.elements.submit.value.trim().toLowerCase()
+    e.target.elements.submit.value = ''
+  }
 
   //root layout
   return (
