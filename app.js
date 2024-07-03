@@ -48,12 +48,12 @@ const savedScore = localStorage.getItem('score')
 if (savedScore) {
   score = parseInt(savedScore, 10)
 } else {
-  localStorage.setItem('score', score.toString());
+  localStorage.setItem('score', score.toString())
 }
 
 // Update the score in local storage
 function updateScore(newScore) {
-  score = newScore;``
+  score = newScore
   localStorage.setItem('score', score.toString())
 }
 
@@ -66,10 +66,33 @@ function App() {
   const [quizWord, setQuizWord] = React.useState('')
   const [passes, setPasses] = React.useState(3)
 
+  //Function for shuffled word
+  const shuffle = (word) => {
+    const arr = word.split('')
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]]
+    }
+    return arr.join('')
+  }
+
+  //Game starts with random words' character
+  const gameStart = () => {
+    const randomIndex = Math.floor(Math.random() * words.length)
+    const selectedWord = words[randomIndex]
+    const scrambledWord = shuffle(selectedWord)
+    setQuizWord(scrambledWord)
+  }
+
+  //Call initial state when game starts
+  React.useEffect(() => {
+    gameStart()
+  }, [])
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    const submit = e.target.elements.submit.value.trim().toLowerCase()
-    e.target.elements.submit.value = ''
+    const guess = e.target.elements.guess.value.trim().toLowerCase()
+    e.target.elements.guess.value = ''
   }
 
   //root layout
