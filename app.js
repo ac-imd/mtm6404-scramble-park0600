@@ -127,7 +127,7 @@ function App() {
         <button type="submit">Submit</button>
       </form>
       <div className="passes">
-        <p>Passes remaining: <span style={{ color: 'red' }}>{passes}</span></p>
+        <button>Passes remaining: <span style={{ color: 'yellow' }}>{passes}</span></button>
       </div>
     </div>
   )
