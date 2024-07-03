@@ -71,8 +71,12 @@ const App = () => {
 
     if (guess === answerWord) {
       //correct answer
+      setScore(score + 1)
+      setReponseMessage('Good job! Next Quiz')
     }else{
       //incorrect answer
+      setStrikes(strikes + 1)
+      setReponseMessage('Please try again')
     }
 
     e.target.reset()
