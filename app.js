@@ -34,6 +34,8 @@ function shuffle (src) {
  * YOUR CODE BELOW
  **********************************************/
 const App = () => {
+  const words = ['turtle', 'dolphin', 'whale', 'penguin', 'panda', 'cat', 'dog', 'elephant', 'rabbit', 'squirrel']
+
   return (
     <div className = "game-container">
       <h1>Welcome to Scramble Game</h1>
