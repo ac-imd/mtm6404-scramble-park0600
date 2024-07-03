@@ -83,11 +83,21 @@ const App = () => {
   }
   
   const passHandler =() => {
-
+    if (passes > 0) {
+      setPasses(passes - 1)
+      gameStart()
+    }
   }
 
   const resetHandler =() => {
-
+    localStorage.clear()
+    setScore(0)
+    setStrikes(0)
+    setPasses(3)
+    setQuizWord('')
+    setAnswerWord('')
+    setReponseMessage('')
+    setGameOver(false)
   }
 
 
@@ -96,24 +106,24 @@ const App = () => {
       <h1>Welcome to Scramble Game</h1>
       <div className = "scoreboard-container">
         <div className = "scoreboard">
-          <p>Score: </p>
-          <p>Strikes: </p>
+          <p>Score: {score}</p>
+          <p>Strikes:{strikes} </p>
         </div>
       </div>
       <div className = "quiz-word">
-        <div><p>Quiz Word</p></div>
+        <div><p>{quizWord}</p></div>
       </div>
       <div className = "response-message">
         <div>
-          <p>Response Message</p>
+          <p>ResponseMessage</p>
         </div>
       </div>
-      <form>
+      <form onSubmit = {submitHandler}>
           <input type="text" name="guess" placeholder="Type your guess word." />
           <button type="submit">Submit</button>
       </form>
       <div className = "remaining-passes">
-        <button>Remaining Passes: </button>
+        <button>Remaining Passes: {passes}</button>
       </div>
     </div>
   )
