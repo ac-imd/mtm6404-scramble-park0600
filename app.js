@@ -32,13 +32,29 @@ function shuffle (src) {
 
 /**********************************************
  * YOUR CODE BELOW
- **********************************************/
-const App = () => {
-  const words = ['turtle', 'dolphin', 'whale', 'penguin', 'panda', 'cat', 'dog', 'elephant', 'rabbit', 'squirrel']
+**********************************************/
+const words = ['turtle', 'dolphin', 'whale', 'penguin', 'panda', 'cat', 'dog', 'elephant', 'rabbit', 'squirrel']
 
-  const [score, setScore] = React.useState(0)
-  const [strikes, setStrikes] = React.useState(0)
-  const [passes, setPasses] = React.useState(3)
+//Make a copy word array to track remaining words
+let wordsCopy = words.slice()
+
+const App = () => {
+
+  const [score, setScore] = React.useState(() => {
+    const savedScore = localStorage.getItem('score')
+    return savedScore ? parseInt(savedScore, 10) : 0
+  })
+
+  const [strikes, setStrikes] = React.useState(() => {
+    const savedStrikes = localStorage.getItem('strikes')
+    return savedStrikes ? parseInt(savedStrikes, 10) : 0
+  })
+
+  const [passes, setPasses] = React.useState(() => {
+    const savedPasses = localStorage.getItem('passes')
+    return savedPasses ? parseInt(savedPasses, 10) : 3
+  })
+
   const [quizWord, setQuizWord] = React.useState('')
   const [answerWord, setAnswerWord] = React.useState('0')
   const [gameOver, setGameOver] = React.useState(false)
