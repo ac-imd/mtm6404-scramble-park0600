@@ -33,3 +33,12 @@ function shuffle (src) {
 /**********************************************
  * YOUR CODE BELOW
  **********************************************/
+const App = () => {
+  return (
+    <div className = "game-container">
+      <h1>Welcome to Scramble Game</h1>
+    </div>
+  )
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
